@@ -1,4 +1,5 @@
 import cats.effect._
+import cats.syntax.all._
 
 object TestSuite {
   import Application.unique
@@ -16,6 +17,10 @@ object TestSuite {
     b <- testB
   } yield a && b
 }
+
+// 1.1 Is Unique:
+// Implement an algorithm to determine if a string has all unique characters.
+// What if you cannot use additional data structures?
 
 object Application extends IOApp {
   def unique(a: String): Boolean = {
@@ -37,6 +42,6 @@ object Application extends IOApp {
 
   override def run(args: List[String]): IO[ExitCode] = for {
     result <- TestSuite.tests
-    _ <- IO(println(s"did all tests pass?: ${resultToYesNo(result)}"))
+    _ <- IO(println(s"did all tests pass?: ${resultToYesNo(result)}!"))
   } yield ExitCode.Success
 }
